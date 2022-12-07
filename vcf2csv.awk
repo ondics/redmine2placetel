@@ -26,8 +26,12 @@ BEGIN {
 
 /^N:/ {
     name =  substr($0,length("N:")+1)
+    gsub("[\\\",]","",name)
     split(name,matches,";")
-    name = matches[1] ", " matches[2]
+    if (matches[1]!="" && matches[2]!="")
+        name = matches[1] ", " matches[2]
+    else 
+        name = matches[1] matches[2]
 }
 /^ORG:/ {
     firma =  substr($0,length("ORG:")+1)
@@ -53,11 +57,15 @@ BEGIN {
 
 /^END:VCARD/ {
     num++
-    if (telArbeit == "" && telMobil == "") {
-        print "SKIPPING " name > "/dev/stderr"
+    if ((length(telArbeit)<5 && length(telMobil)<5) \
+        || match(telArbeit,/\?/) )
+    {
+        print "SKIPPING: phone <8 chars or with '?': " name > "/dev/stderr"
         numSkipped++
         next
     }
+    if (firma=="")
+        firma="Zentrale"
     printf("%s (%s)|%s|%s\n",name,firma,telArbeit,telMobil)
     numConverted++
     name=firma=telArbeit=telMobil=tel=""
