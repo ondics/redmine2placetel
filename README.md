@@ -7,7 +7,7 @@ Redmine-contacts-to-Placetel converter
 
 # Usage
 
-Export contects from Redmine in `VCF` format.
+Export contacts from [Redmine](https://www.redmine.org/) in `VCF` format.
 
 Then convert file to `csv` format:
 

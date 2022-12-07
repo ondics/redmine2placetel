@@ -2,7 +2,7 @@
 # Redmine contact export to csv
 # used for Placetel phone service
 #
-#https://licenciaparahackear.github.io/en/posts/filtrando-mis-contactos-del-celular-con-awk/
+# (C) Ondics GmbH, 2022
 #
 
 function processPhone(line,pattern)
