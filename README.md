@@ -1,18 +1,23 @@
-Redmine-contacts-to-Placetel converter
+Redmine-to-Placetel contacts converter
 ======================================
 
-# System requirements
+Linux commandline batch converter for contacts exported from 
+[Redmine](https://www.redmine.org/).
+
+The converted contacts can be imported into [Placetel](https://placetel.de).
+
+## System requirements
 
 * awk
 
-# Usage
+## Usage
 
-Export contacts from [Redmine](https://www.redmine.org/) in `VCF` format.
+First export contacts from Redmine in `VCF` format.
 
 Then convert file to `csv` format:
 
-    gawk -F: -f vcf2csv.awk contacts_redmine.vcf
+    awk -F: -f vcf2csv.awk contacts_redmine.vcf > contacts_placetel.csv
 
-# Author
+## Author
 
 (C) 2022, Ondics GmbH
